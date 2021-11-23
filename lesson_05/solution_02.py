@@ -9,4 +9,4 @@ people = list(iter(lambda:input(prompt), "end"))
 shuffle(people)
 people.append(people[0])
 for i in range(len(people) - 1):
-    print(people[i],"buys for", people[i + 1])
+    print(people[i],"покупает для", people[i + 1])
