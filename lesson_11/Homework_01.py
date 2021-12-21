@@ -7,7 +7,7 @@
 import sqlite3
 
 
-def create_product_table():                              #Создаем таблицу продуктов
+def create_product_table():                              # Создаем таблицу продуктов
     with sqlite3.connect("product.sqlite3") as session:
        cursor = session.cursor()
        cursor.execute(
@@ -24,7 +24,7 @@ def create_product_table():                              #Создаем таб�
        session.commit()
 
 
-def create_product(name: str, price: str, amount: str, comments: str):        #Создаем продукты
+def create_product(name: str, price: str, amount: str, comments: str):        # Создаем продукты
     with sqlite3.connect("product.sqlite3") as session:
         cursor = session.cursor()
         cursor.execute(
@@ -37,7 +37,7 @@ def create_product(name: str, price: str, amount: str, comments: str):        #�
         session.commit()
 
 
-def read_product():                #Чтение из базы
+def read_product():                # Чтение из базы
    with sqlite3.connect("product.sqlite3") as session:
        cursor = session.cursor()
        cursor.execute(
@@ -50,7 +50,7 @@ def read_product():                #Чтение из базы
        return cursor.fetchall()
 
 
-def update_product():        #Обновляем продукт по id
+def update_product(query: str, query2: str):        # Обновляем продукт по id
     with sqlite3.connect("product.sqlite3") as session:
         cursor = session.cursor()
         cursor.execute(
@@ -59,11 +59,12 @@ def update_product():        #Обновляем продукт по id
             SET name = ?
             WHERE id = ?;
             """,
+            (query, query2,),  # указываем количество аргументов для ввода
         )
         session.commit()
 
 
-def delete_product():        #Удаляем продукт по id
+def delete_product(query: str):        # Удаляем продукт по id
     with sqlite3.connect("product.sqlite3") as session:
         cursor = session.cursor()
         cursor.execute(
@@ -71,9 +72,24 @@ def delete_product():        #Удаляем продукт по id
             DELETE FROM user
             WHERE id = ?;
             """,
+            (query,),
         )
         session.commit()
 
 if __name__ == "__main__":
-    result = read_product()
-    print(result)
+    print("Заглушка")
+"""
+    delete_product(input("Введите ID: "))
+
+    update_product(
+                   input("Введите новое имя: "),
+                   input("Введите ID: "),
+                   )
+
+    create_product(
+                   input("Введите имя: "),
+                   input("Введите цену: "),
+                   input("Введите количество: "),
+                   input("Введите комментарий: ")
+                   )
+"""
